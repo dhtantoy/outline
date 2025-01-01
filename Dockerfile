@@ -1,24 +1,17 @@
-ARG APP_PATH=/opt/outline
-FROM outlinewiki/outline-base AS base
-
-ARG APP_PATH
-WORKDIR $APP_PATH
-
-# ---
 FROM node:20-slim AS runner
 
 LABEL org.opencontainers.image.source="https://github.com/outline/outline"
 
-ARG APP_PATH
+ARG APP_PATH=/opt/outline
 WORKDIR $APP_PATH
 ENV NODE_ENV=production
 
-COPY --from=base $APP_PATH/build ./build
-COPY --from=base $APP_PATH/server ./server
-COPY --from=base $APP_PATH/public ./public
-COPY --from=base $APP_PATH/.sequelizerc ./.sequelizerc
-COPY --from=base $APP_PATH/node_modules ./node_modules
-COPY --from=base $APP_PATH/package.json ./package.json
+COPY ./build ./build
+COPY ./server ./server
+COPY ./public ./public
+COPY ./.sequelizerc ./.sequelizerc
+COPY ./node_modules ./node_modules
+COPY ./package.json ./package.json
 
 # Install wget to healthcheck the server
 RUN  apt-get update \
