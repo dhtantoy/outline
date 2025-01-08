@@ -135,6 +135,15 @@ const embeds: EmbedDescriptor[] = [
       `https://app.goabstract.com/embed/${matches[1]}`,
   }),
   new EmbedDescriptor({
+    title: "Asciinema",
+    keywords: "terminal player",
+    defaultHidden: false,
+    icon: <Img src="/images/asciinema.png" alt="Asciinema" />,
+    regexMatch: [new RegExp("(.*)")],
+    hideToolbar: true,
+    transformMatch: (matches: RegExpMatchArray) => `${matches[0]}/iframe`,
+  }),
+  new EmbedDescriptor({
     title: "Airtable",
     keywords: "spreadsheet",
     icon: <Img src="/images/airtable.png" alt="Airtable" />,
