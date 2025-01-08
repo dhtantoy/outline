@@ -1,0 +1,3 @@
+[submodule "oidc-server"]
+	path = oidc-server
+	url = https://github.com/vicalloy/oidc-server.git
