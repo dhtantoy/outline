@@ -137,10 +137,14 @@ const embeds: EmbedDescriptor[] = [
   new EmbedDescriptor({
     title: "Asciinema",
     keywords: "terminal player",
-    defaultHidden: false,
-    icon: <Img src="/images/asciinema.png" alt="Asciinema" />,
-    regexMatch: [new RegExp("(.*)")],
+    defaultHidden: true,
     hideToolbar: true,
+    icon: <Img src="/images/asciinema.png" alt="Asciinema" />,
+    regexMatch: [
+      new RegExp(
+        "(?:http://127\\.0\\.0\\.1(?::[0-9]*)|https://asciinema\\.org)/a/.*"
+      ),
+    ],
     transformMatch: (matches: RegExpMatchArray) => `${matches[0]}/iframe`,
   }),
   new EmbedDescriptor({
@@ -166,6 +170,7 @@ const embeds: EmbedDescriptor[] = [
     title: "Bilibili",
     keywords: "video",
     defaultHidden: true,
+    hideToolbar: true,
     regexMatch: [
       /(?:https?:\/\/)?(www\.bilibili\.com)\/video\/([\w\d]+)?(\?\S+)?/i,
     ],
