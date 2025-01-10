@@ -142,7 +142,7 @@ const embeds: EmbedDescriptor[] = [
     icon: <Img src="/images/asciinema.png" alt="Asciinema" />,
     regexMatch: [
       new RegExp(
-        "(?:http://127\\.0\\.0\\.1(?::[0-9]*)|https://asciinema\\.org)/a/.*"
+        "(?:http://127\\.0\\.0\\.1(?::[0-9]*)/asciinema|https://asciinema\\.org)/a/.*"
       ),
     ],
     transformMatch: (matches: RegExpMatchArray) => `${matches[0]}/iframe`,
