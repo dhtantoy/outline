@@ -1,8 +1,8 @@
 import { version } from "../../package.json";
 import fetch from "./fetch";
 
-const dockerhubLink =
-  "https://hub.docker.com/v2/repositories/outlinewiki/outline";
+// const dockerhubLink =
+//   "https://hub.docker.com/v2/repositories/outlinewiki/outline";
 
 function isFullReleaseVersion(versionName: string): boolean {
   const releaseRegex = /^(version-)?\d+\.\d+\.\d+$/; // Matches "N.N.N" or "version-N.N.N" for dockerhub releases before v0.56.0"
@@ -15,8 +15,8 @@ export async function getVersionInfo(currentVersion: string): Promise<{
 }> {
   let allVersions: string[] = [];
   let latestVersion: string | null = null;
-  let nextUrl: string | null =
-    dockerhubLink + "/tags?name=&ordering=last_updated&page_size=100";
+  let nextUrl: string | null = null;
+  // dockerhubLink + "/tags?name=&ordering=last_updated&page_size=100";
 
   // Continue fetching pages until the required versions are found or no more pages
   while (nextUrl) {
