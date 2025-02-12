@@ -11,7 +11,7 @@ up:
 	yarn dev:watch
 
 build:
-	yarn build
+	yarn install && yarn build
 	docker build  --network=host -t outline/outline:${OUTLINE_VERSION} .
 
 test:
