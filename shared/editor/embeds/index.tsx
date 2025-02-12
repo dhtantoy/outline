@@ -145,7 +145,8 @@ const embeds: EmbedDescriptor[] = [
         "(?:http://127\\.0\\.0\\.1(?::[0-9]*)/asciinema|https://asciinema\\.org)/a/.*"
       ),
     ],
-    transformMatch: (matches: RegExpMatchArray) => `${matches[0]}/iframe`,
+    transformMatch: (matches: RegExpMatchArray) =>
+      `${matches[0]}/iframe?cols=80&rows=16`,
   }),
   new EmbedDescriptor({
     title: "Airtable",
