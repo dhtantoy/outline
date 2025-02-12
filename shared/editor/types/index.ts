@@ -6,6 +6,11 @@ import * as React from "react";
 import { DefaultTheme } from "styled-components";
 import { Primitive } from "utility-types";
 
+export type NodeWithPos = {
+  pos: number;
+  node: ProsemirrorNode;
+};
+
 export type PlainTextSerializer = (node: ProsemirrorNode) => string;
 
 export enum TableLayout {
@@ -15,7 +20,7 @@ export enum TableLayout {
 type Section = ({ t }: { t: TFunction }) => string;
 
 export type MenuItem = {
-  icon?: React.ReactElement;
+  icon?: React.ReactNode;
   name?: string;
   title?: string;
   section?: Section;
