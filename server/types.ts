@@ -7,7 +7,6 @@ import {
   NavigationNode,
   Client,
   CollectionPermission,
-  DocumentPermission,
   JSONValue,
   UnfurlResourceType,
   ProsemirrorData,
@@ -118,6 +117,10 @@ export type AttachmentEvent = BaseEvent<Attachment> &
         };
       }
     | {
+        name: "attachments.update";
+        modelId: string;
+      }
+    | {
         name: "attachments.delete";
         modelId: string;
         data: {
@@ -179,7 +182,6 @@ export type DocumentEvent = BaseEvent<Document> &
         name:
           | "documents.create"
           | "documents.publish"
-          | "documents.unpublish"
           | "documents.delete"
           | "documents.permanent_delete"
           | "documents.archive"
@@ -190,6 +192,11 @@ export type DocumentEvent = BaseEvent<Document> &
           title: string;
           source?: "import";
         };
+      }
+    | {
+        name: "documents.unpublish";
+        documentId: string;
+        collectionId: string;
       }
     | {
         name: "documents.unarchive";
@@ -265,7 +272,6 @@ export type CollectionUserEvent = BaseEvent<UserMembership> & {
   collectionId: string;
   data: {
     isNew?: boolean;
-    permission?: CollectionPermission;
   };
 };
 
@@ -273,7 +279,7 @@ export type CollectionGroupEvent = BaseEvent<GroupMembership> & {
   name: "collections.add_group" | "collections.remove_group";
   collectionId: string;
   modelId: string;
-  data: { name: string; membershipId: string };
+  data: { membershipId: string };
 };
 
 export type DocumentUserEvent = BaseEvent<UserMembership> & {
@@ -282,9 +288,7 @@ export type DocumentUserEvent = BaseEvent<UserMembership> & {
   modelId: string;
   documentId: string;
   data: {
-    title: string;
     isNew?: boolean;
-    permission?: DocumentPermission;
   };
 };
 
@@ -293,9 +297,7 @@ export type DocumentGroupEvent = BaseEvent<GroupMembership> & {
   documentId: string;
   modelId: string;
   data: {
-    name: string;
     isNew?: boolean;
-    permission?: DocumentPermission;
     membershipId: string;
   };
 };
